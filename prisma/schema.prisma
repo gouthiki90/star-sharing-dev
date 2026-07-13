@@ -1,8 +1,16 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
 datasource db {
   provider = "postgresql"
 }
 
-generator client {
-  provider = "prisma-client"
-  output   = "./generated"
+model location {
+  oid         String   @id @db.VarChar
+  place       String   @db.VarChar
+  time        DateTime @db.Timetz(6)
+  create_date DateTime @db.Timetz(6)
+  update_date DateTime @db.Timetz(6)
 }
