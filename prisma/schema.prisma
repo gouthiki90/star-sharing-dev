@@ -8,9 +8,10 @@ datasource db {
 }
 
 model location {
-  oid         String   @id @db.VarChar
-  place       String   @db.VarChar
-  time        DateTime @db.Timetz(6)
-  create_date DateTime @db.Timetz(6)
-  update_date DateTime @db.Timetz(6)
+  id          String   @id @db.VarChar
+  latitude    Float
+  longitude   Float
+  local_time  DateTime @db.Timestamptz(6)
+  create_date DateTime @db.Timestamptz(6)
+  update_date DateTime @db.Timestamptz(6)
 }

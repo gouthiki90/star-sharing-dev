@@ -42,6 +42,9 @@ lerna-debug.log*
 .env.production.local
 .env.local
 
+# auth
+/src/auth
+
 # temp directory
 .temp
 .tmp
