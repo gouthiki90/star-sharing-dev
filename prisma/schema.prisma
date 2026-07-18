@@ -1,8 +1,9 @@
 generator client {
-  provider = "prisma-client"
-  output = "./client"
+  provider     = "prisma-client"
+  output       = "./client"
   moduleFormat = "cjs"
 }
+
 datasource db {
   provider = "postgresql"
 }
@@ -12,6 +13,6 @@ model location {
   latitude    Float
   longitude   Float
   local_time  DateTime @db.Timestamptz(6)
-  create_date DateTime @db.Timestamptz(6)
+  create_date DateTime @default(now()) @db.Timestamptz(6)
   update_date DateTime @db.Timestamptz(6)
 }
