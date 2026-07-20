@@ -8,14 +8,16 @@ import { LocationDto } from "./dto/location.dto";
 import { ErrorHandler } from "../common/error-handler";
 import { PrismaService } from "../prisma/prisma.service";
 import { Utils } from "../lib/utils/common.utils";
+import { AuthService } from "../auth/auth.service";
 
 @UseFilters(ErrorHandler)
 @Injectable()
 export class LocationService {
   constructor(
     private locationDto: LocationDto,
-    private prisma: PrismaService,
-    private utils: Utils
+    private readonly prisma: PrismaService,
+    private readonly utils: Utils,
+    private readonly authService: AuthService
   ) {}
   async getLocation(data: LocationDto) {
     if (!data) throw new InternalServerErrorException("none data");
@@ -35,6 +37,13 @@ export class LocationService {
           update_date: new Date(),
         },
       });
+
+      /** db insert 후 토큰값 생성 */
+      const userToken = this.authService.createAccessToken(id);
+
+      console.log({ userToken });
+
+      return { success: true, userToken };
     } catch (error) {
       Logger.error(error);
       throw new InternalServerErrorException(error);
