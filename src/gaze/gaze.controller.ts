@@ -14,6 +14,6 @@ export class GazesController {
   }
 
   /** 일단 서드파티 테스트 */
-  @Post()
-  getStarFromUserLocation() {}
+  // @Post()
+  // getStarFromUserLocation() {}
 }
